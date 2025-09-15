@@ -8,12 +8,11 @@
   <meta name="color-scheme" content="light dark" />
   <style>
     :root{
-      --bg: #ffffff; --text: #0f172a; --muted:#64748b; --card:#ffffff; --border:#e2e8f0;
+      --bg: #ffffff; --text:#0f172a; --muted:#64748b; --card:#ffffff; --border:#e2e8f0;
       --accent:#002554; /* FLEX navy */
       --accent-2:#cb9700; /* FLEX gold */
       --radius:16px; --shadow: 0 6px 24px rgba(2,6,23,.08);
     }
-
     *{ box-sizing:border-box }
     html,body{ height:100% }
     body{
@@ -25,12 +24,8 @@
       display:flex; gap:16px; align-items:center; justify-content:space-between; flex-wrap:wrap;
       margin-bottom:18px;
     }
-    .brand{
-      display:flex; align-items:center; gap:14px;
-    }
-    .logo img{ 
-    	display:block; border-radius:12px; 
-    }
+    .brand{ display:flex; align-items:center; gap:14px; }
+    .logo img{ display:block; border-radius:12px; }
     h1{ font-size: clamp(20px, 3.4vw, 28px); margin:0 }
     .tools{ display:flex; gap:10px; align-items:center; flex-wrap:wrap }
     input[type="search"]{
@@ -69,7 +64,6 @@
     }
     .tag{ color:var(--muted); font-size:12px; text-transform:uppercase; letter-spacing:.08em }
     .accent{ color:var(--accent-2) }
-    /* optional brand bar */
     .bar{ height:6px; border-radius:999px; background:linear-gradient(90deg,var(--accent),var(--accent-2)); margin:10px 0 6px }
   </style>
 </head>
@@ -77,9 +71,9 @@
   <div class="wrap">
     <header role="banner" aria-label="Portal header">
       <div class="brand">
-       <div class="logo" aria-hidden="true">
-       		<img src="PTSA-Logo-Transparent.png" alt="FLEX PTSA" height="52" width="120" decoding="async">
-       	</div>
+        <div class="logo" aria-hidden="true">
+          <img src="PTSA-Logo-Transparent.png" alt="FLEX PTSA" height="52" width="120" decoding="async">
+        </div>
         <div>
           <div class="tag">FLEX PTSA</div>
           <h1>Leadership Team Portal</h1>
@@ -87,98 +81,16 @@
       </div>
       <div class="tools">
         <input id="q" type="search" placeholder="Filter links…" aria-label="Filter links" />
-       
-       <!-- 
-        <button class="toggle" id="themeBtn" type="button" aria-label="Toggle theme">🌓 Theme</button>
-        -->
+        <a id="editLinksBtn" class="toggle" href="#" target="_blank" rel="noopener">✏️ Edit links</a>
+        <!-- <button class="toggle" id="themeBtn" type="button" aria-label="Toggle theme">🌓 Theme</button> -->
       </div>
     </header>
     <div class="bar" aria-hidden="true"></div>
 
-    <!-- ===== DATA (edit this) ===== -->
+    <!-- Cards will be injected here from links.md -->
     <section class="grid" id="cards" aria-label="Portal sections">
-      <!-- PTSA -->
-      <article class="card" data-section="ptsa">
-        <div class="ctitle">
-          <div class="icon" aria-hidden="true">🍹</div>
-          <h2>FLEX PTSA</h2>
-        </div>
-        <div class="links">
-          <a href="https://www.crossroadsflexptsa.org" target="_blank" rel="noopener">
-            PTSA Website <span class="pill">external ↗</span>
-          </a>
-          <a href="https://www.facebook.com/crossroadsflexhsptsa" target="_blank" rel="noopener">Facebook <span class="pill">social</span></a>
-          <a href="https://instagram.com/crossroadsflexptsa" target="_blank" rel="noopener">Instagram <span class="pill">social</span></a>
-          <a href="https://drive.google.com/drive/folders/14TN5mhiE46Vmk952Grbqqt2YTmkByG1G?usp=sharing" target="_blank" rel="noopener">Google Drive <span class="pill">drive</span></a>
-        </div>
-      </article>
-      
-      <!-- School -->
-      <article class="card" data-section="school">
-        <div class="ctitle">
-          <div class="icon" aria-hidden="true">🎓</div>
-          <h2>School</h2>
-        </div>
-        <div class="links">
-          <a href="https://www.wcpss.net/crossroadsflex" target="_blank" rel="noopener">School Website <span class="pill">site</span></a>
-          <a href="https://www.facebook.com/people/Crossroads-FLEX-High-School/100095555411790/?mibextid=eQY6cl" target="_blank" rel="noopener">Facebook <span class="pill">social</span></a>
-          <a href="https://www.instagram.com/crossroadsflex/" target="_blank" rel="noopener">Instagram <span class="pill">social</span></a>
-          <a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vR36ClY0aKg3OLH1nDjGf69Gxkr5_2YcmL3lE8IHGIMelzbZJSTNTdoDfJcbW7T4po1GgrQQT3pTjGh/pubhtml" target="_blank" rel="noopener">Parent Dashboard <span class="pill">portal</span></a>
-        </div>
-      </article>
-      
-      <!-- Finance -->
-      <article class="card" data-section="finance">
-        <div class="ctitle">
-          <div class="icon" aria-hidden="true">💰</div>
-          <h2>Finance</h2>
-        </div>
-        <div class="links">
-          <a href="https://app.moneyminder.com/login" target="_blank" rel="noopener">Money Minder <span class="pill">finance</span></a>
-          <a href="https://docs.google.com/spreadsheets/d/1PHnmgpq3bYQw9ygGQVX2mIQUz1hdC_eEk_kmFG3YPPw/edit?usp=sharing" target="_blank" rel="noopener">Fundraising Tracker <span class="pill">sheet</span></a>
-        </div>
-      </article>
-
-      <!-- Store -->
-      <article class="card" data-section="store">
-        <div class="ctitle">
-          <div class="icon" aria-hidden="true">👕</div>
-          <h2>Store</h2>
-        </div>
-        <div class="links">
-          <a href="https://crossroadsflex.givebacks.com/shop" target="_blank" rel="noopener">Givebacks Store <span class="pill">store</span></a>
-          <a href="https://crossroadsflex.givebacks.com/dashboard" target="_blank" rel="noopener">Givebacks Admin <span class="pill">admin</span></a>
-          
-        </div>
-      </article>
-
-      <!-- Volunteer -->
-      <article class="card" data-section="volunteer">
-        <div class="ctitle">
-          <div class="icon" aria-hidden="true">🦮</div>
-          <h2>Volunteer</h2>
-        </div>
-        <div class="links">
-          <a href="https://www.signupgenius.com/go/10C0D4CA9A628A6F4C52-50407712-volunteer#/" target="_blank" rel="noopener">Sign-Up Genius <span class="pill">forms</span></a>
-          <a href="https://forms.gle/bo7Y3jTCNP82eKBaA" target="_blank" rel="noopener">Interest Form <span class="pill">forms</span></a>
-        </div>
-      </article>
-
-      <!-- Calendar -->
-      <article class="card" data-section="calendar">
-        <div class="ctitle">
-          <div class="icon" aria-hidden="true">📅</div>
-          <h2>Calendar</h2>
-        </div>
-        <div class="links">
-          <a href="https://www.crossroadsflexptsa.org/calendar" target="_blank" rel="noopener">PTSA Google Calendar <span class="pill">calendar</span></a>
-          <a href="https://www.wcpss.net/Page/5424#calendar11750/20250912/month" target="_blank" rel="noopener">FLEX School Calendar <span class="pill">calendar</span></a>
-        </div>
-      </article>
-
-
+      Loading links…
     </section>
-    <!-- ===== end DATA ===== -->
 
     <footer role="contentinfo">
       <div>Last updated <span class="accent" id="updated"></span></div>
@@ -186,58 +98,151 @@
     </footer>
   </div>
 
+  <!-- Marked.js for Markdown parsing -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
   <script>
-document.addEventListener('DOMContentLoaded', () => {
-  // Filter links
-  const q = document.getElementById('q');
-  if (q) {
-    q.addEventListener('input', () => {
-      const term = q.value.toLowerCase().trim();
-      document.querySelectorAll('#cards .card').forEach(card => {
-        const text = card.innerText.toLowerCase();
-        card.style.display = text.includes(term) ? '' : 'none';
-      });
-    });
-  }
-
-  // Theme toggle (only if button exists)
-  const btn = document.getElementById('themeBtn');
-  if (btn) {
-    const key = 'ptsa-theme';
-    const setTheme = t => document.documentElement.dataset.theme = t;
-    const saved = localStorage.getItem(key);
-    if (saved) setTheme(saved);
-    btn.addEventListener('click', () => {
-      const cur = document.documentElement.dataset.theme === 'light' ? 'dark' : 'light';
-      setTheme(cur); localStorage.setItem(key, cur);
-    });
-  }
-
-  // Robust "Last updated"
-  (async () => {
-    const updated = document.getElementById('updated');
-    if (!updated) return;
+  document.addEventListener('DOMContentLoaded', () => {
+    // Edit Links 
+  const editBtn = document.getElementById('editLinksBtn');
+  if (editBtn) {
+    // Try to infer owner/repo from GitHub Pages URL structure
+    const owner = (location.hostname.endsWith('.github.io') && location.hostname.split('.')[0]) || 'flexptsa';
+    const repo  = (location.pathname.split('/').filter(Boolean)[0]) || 'PTSADashboard';
+    const branch = 'main'; // change to 'gh-pages' if you use that as default
+    const fallback = 'https://github.com/flexptsa/PTSADashboard/edit/main/links.md';
 
     try {
-      const res = await fetch(window.location.href, { method: 'HEAD', cache: 'no-store' });
-      const lm = res.headers.get('Last-Modified');
-      const d = lm ? new Date(lm) : new Date(document.lastModified || Date.now());
-      updated.textContent = d.toLocaleString();
-      updated.title = d.toLocaleString();
-    } catch (e) {
-      const d = new Date(document.lastModified || Date.now());
-      updated.textContent = d.toLocaleDateString();
-      updated.title = d.toLocaleString();
+      const url = `https://github.com/${owner}/${repo}/edit/${branch}/links.md`;
+      editBtn.href = url;
+    } catch {
+      editBtn.href = fallback;
     }
-  })();
+  }
 
-  // External link semantics (append safely)
-  document.querySelectorAll('a[target="_blank"]').forEach(a => {
-    if (a.relList && a.relList.add) a.relList.add('noopener','noreferrer');
-    else a.setAttribute('rel', ((a.getAttribute('rel')||'') + ' noopener noreferrer').trim());
-    a.setAttribute('aria-label', (a.textContent.trim() + ' (opens in new tab)').trim());
+    // Filter links by search term
+    const q = document.getElementById('q');
+    if (q) {
+      q.addEventListener('input', () => {
+        const term = q.value.toLowerCase().trim();
+        document.querySelectorAll('#cards .card').forEach(card => {
+          const text = card.innerText.toLowerCase();
+          card.style.display = text.includes(term) ? '' : 'none';
+        });
+      });
+    }
+
+    // Theme toggle (only if button exists)
+    const btn = document.getElementById('themeBtn');
+    if (btn) {
+      const key = 'ptsa-theme';
+      const setTheme = t => document.documentElement.dataset.theme = t;
+      const saved = localStorage.getItem(key);
+      if (saved) setTheme(saved);
+      btn.addEventListener('click', () => {
+        const cur = document.documentElement.dataset.theme === 'light' ? 'dark' : 'light';
+        setTheme(cur); localStorage.setItem(key, cur);
+      });
+    }
+
+    // Robust "Last updated"
+    (async () => {
+      const updated = document.getElementById('updated');
+      if (!updated) return;
+      try {
+        const res = await fetch(window.location.href, { method: 'HEAD', cache: 'no-store' });
+        const lm = res.headers.get('Last-Modified');
+        const d = lm ? new Date(lm) : new Date(document.lastModified || Date.now());
+        updated.textContent = d.toLocaleString();
+        updated.title = d.toLocaleString();
+      } catch (e) {
+        const d = new Date(document.lastModified || Date.now());
+        updated.textContent = d.toLocaleDateString();
+        updated.title = d.toLocaleString();
+      }
+    })();
+
+    // External link semantics (append safely after we inject links)
+    const applyExternalAttrs = () => {
+      document.querySelectorAll('a[target="_blank"]').forEach(a => {
+        if (a.relList && a.relList.add) a.relList.add('noopener','noreferrer');
+        else a.setAttribute('rel', ((a.getAttribute('rel')||'') + ' noopener noreferrer').trim());
+        a.setAttribute('aria-label', (a.textContent.trim() + ' (opens in new tab)').trim());
+      });
+    };
+
+    // Load links.md and render as cards
+    async function loadLinks() {
+      try {
+        const res = await fetch('links.md', { cache: 'no-store' });
+        if (!res.ok) throw new Error('Failed to fetch links.md');
+        const md = await res.text();
+
+        // Tokenize the markdown to pull out H2 sections and list items
+        const tokens = marked.lexer(md);
+
+        const cards = [];
+        let current = null;
+
+        tokens.forEach(tok => {
+          if (tok.type === 'heading' && tok.depth === 2) {
+            if (current) cards.push(current);
+
+            // Try to pull an emoji at the start, fallback to 📁
+            let icon = '📁';
+            let title = tok.text;
+
+            // Regex for a leading emoji (works in modern browsers)
+            const m = tok.text.match(/^(\p{Emoji_Presentation}|\p{Extended_Pictographic})\s*(.*)$/u);
+            if (m) { icon = m[1]; title = m[2]; }
+
+            current = { icon, title, links: [] };
+          } else if (tok.type === 'list') {
+            // Handle all list items under the current section
+            tok.items?.forEach(item => {
+              if (!current) return;
+              // Expect format: [Label](URL) _(pill)_
+              const linkMatch = item.text.match(/\[([^\]]+)\]\(([^)]+)\)(?:\s*_\(([^)]+)\)_)?/);
+              if (linkMatch) {
+                current.links.push({
+                  label: linkMatch[1],
+                  url: linkMatch[2],
+                  pill: linkMatch[3] || ''
+                });
+              }
+            });
+          }
+        });
+        if (current) cards.push(current);
+
+        // Build the HTML
+        const html = cards.map(c => `
+          <article class="card">
+            <div class="ctitle">
+              <div class="icon" aria-hidden="true">${c.icon}</div>
+              <h2>${c.title}</h2>
+            </div>
+            <div class="links">
+              ${c.links.map(l => `
+                <a href="${l.url}" target="_blank">
+                  ${l.label}${l.pill ? ` <span class="pill">${l.pill}</span>` : ``}
+                </a>
+              `).join('')}
+            </div>
+          </article>
+        `).join('');
+
+        const mount = document.getElementById('cards');
+        mount.innerHTML = html;
+        applyExternalAttrs();
+      } catch (err) {
+        console.error(err);
+        document.getElementById('cards').innerHTML = 'Error loading links.';
+      }
+    }
+
+    loadLinks();
   });
-});
-</script>
+  </script>
 </body>
 </html>

@@ -27,3 +27,7 @@
 ## 📅 Calendar
 - [PTSA Google Calendar](https://www.crossroadsflexptsa.org/calendar) _(calendar)_
 - [FLEX School Calendar](https://www.wcpss.net/Page/5424#calendar11750/20250912/month) _(calendar)_
+
+## 💾 Drive Folders
+- [Sponsor Logos]([https://www.crossroadsflexptsa.org/calendar](https://drive.google.com/drive/folders/144P6pKotOGiO2JCJhPVVuOxGwSBKodyH?usp=drive_link) _(drive)_
+- [Principal Messages]([https://www.wcpss.net/Page/5424#calendar11750/20250912/month](https://drive.google.com/drive/folders/1QyLRIT82WsGZYRBI_oOYUrYDzdb_8hh3?usp=drive_link) _(drive)_

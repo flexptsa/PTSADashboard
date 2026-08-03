@@ -7,7 +7,7 @@
 - [Google Drive](https://drive.google.com/drive/folders/14TN5mhiE46Vmk952Grbqqt2YTmkByG1G?usp=sharing) _(drive)_
 
 ## 🎓 School
-- [School Website](https://www.wcpss.net/crossroadsflex) _(site)_
+- [School Website](https://crossroadsflexhs.wcpss.net) _(site)_
 - [Facebook](https://www.facebook.com/people/Crossroads-FLEX-High-School/100095555411790/?mibextid=eQY6cl) _(social)_
 - [Instagram](https://www.instagram.com/crossroadsflex/) _(social)_
 - [Parent Dashboard](https://docs.google.com/spreadsheets/d/e/2PACX-1vR36ClY0aKg3OLH1nDjGf69Gxkr5_2YcmL3lE8IHGIMelzbZJSTNTdoDfJcbW7T4po1GgrQQT3pTjGh/pubhtml) _(portal)_
@@ -29,5 +29,6 @@
 - [FLEX School Calendar](https://crossroadsflexhs.wcpss.net/our-school/calendar-and-schedules) _(calendar)_
 
 ## 💾 Drive Folders
+- [PTSA Leadership](https://drive.google.com/drive/folders/14TN5mhiE46Vmk952Grbqqt2YTmkByG1G?usp=drive_link) _(drive)_
 - [Sponsor Logos](https://drive.google.com/drive/folders/144P6pKotOGiO2JCJhPVVuOxGwSBKodyH?usp=drive_link) _(drive)_
-- [Principal Messages](https://drive.google.com/drive/folders/1QyLRIT82WsGZYRBI_oOYUrYDzdb_8hh3?usp=drive_link) _(drive)_
+- [PTSA Newsletter](https://drive.google.com/drive/folders/15f2xfUjouZ_DBVSz9pYcuamfvtNARV0h?usp=sharing) _(drive)_

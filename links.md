@@ -26,7 +26,7 @@
 
 ## 📅 Calendar
 - [PTSA Google Calendar](https://www.crossroadsflexptsa.org/calendar) _(calendar)_
-- [FLEX School Calendar]([https://crossroadsflexhs.wcpss.org/](https://crossroadsflexhs.wcpss.net/our-school/calendar-and-schedules)) _(calendar)_
+- [FLEX School Calendar](https://crossroadsflexhs.wcpss.net/our-school/calendar-and-schedules) _(calendar)_
 
 ## 💾 Drive Folders
 - [Sponsor Logos](https://drive.google.com/drive/folders/144P6pKotOGiO2JCJhPVVuOxGwSBKodyH?usp=drive_link) _(drive)_

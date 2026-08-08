@@ -1,0 +1,420 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Edit Links – FLEX Family Dashboard</title>
+<meta name="color-scheme" content="light dark" />
+<style>
+:root{
+  --bg: #ffffff; --text:#0f172a; --muted:#64748b; --card:#ffffff; --border:#e2e8f0;
+  --accent:#002554; /* FLEX navy */
+  --accent-2:#cb9700; /* FLEX gold */
+  --radius:16px; --shadow: 0 6px 24px rgba(2,6,23,.08);
+  --ok:#166534; --ok-bg:#f0fdf4; --ok-bd:#bbf7d0;
+  --err:#b91c1c; --err-bg:#fef2f2; --err-bd:#fecaca;
+}
+*{ box-sizing:border-box }
+html,body{ height:100% }
+body{
+  margin:0; background:#f8fafc; color:var(--text);
+  font:16px/1.45 system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif;
+}
+.wrap{ max-width:980px; margin:0 auto; padding:28px 20px 80px }
+header{
+  display:flex; gap:16px; align-items:center; justify-content:space-between; flex-wrap:wrap;
+  margin-bottom:14px;
+}
+.brand{ display:flex; align-items:center; gap:14px; }
+.logo img{ display:block; border-radius:12px; }
+h1{ font-size: clamp(20px, 3.4vw, 26px); margin:0 }
+.tag{ color:var(--muted); font-size:12px; text-transform:uppercase; letter-spacing:.08em }
+.backlink{ color:var(--muted); font-size:14px; text-decoration:none; border:1px solid var(--border); background:#fff; border-radius:999px; padding:9px 14px; }
+.backlink:hover{ border-color: color-mix(in srgb, var(--accent-2) 40%, var(--border)); }
+.bar{ height:6px; border-radius:999px; background:linear-gradient(90deg,var(--accent),var(--accent-2)); margin:10px 0 22px }
+
+.statusbar{
+  display:flex; gap:12px; align-items:center; flex-wrap:wrap;
+  padding:12px 16px; border-radius:12px; margin-bottom:22px;
+  background:#fff; border:1px solid var(--border);
+}
+.statusbar.ok{ background:var(--ok-bg); border-color:var(--ok-bd); color:var(--ok); }
+.statusbar.err{ background:var(--err-bg); border-color:var(--err-bd); color:var(--err); }
+.status-msg{ flex:1; min-width:200px; font-size:14px; }
+.filebtn{
+  display:inline-block; border:1px solid var(--border); background:#fff; color:var(--text);
+  border-radius:999px; padding:8px 14px; cursor:pointer; font-size:13px;
+}
+.filebtn input[type=file]{ display:none; }
+
+.cat-block{
+  background:var(--card); border:1px solid var(--border); border-radius:var(--radius); box-shadow:var(--shadow);
+  padding:16px; margin-bottom:18px;
+}
+.cat-head{ display:flex; gap:10px; align-items:center; margin-bottom:14px; }
+.icon-input{ width:56px; text-align:center; font-size:20px; padding:8px 4px !important; }
+.title-input{ flex:1; font-size:16px; font-weight:700; }
+.cat-controls{ display:flex; gap:4px; }
+
+input[type=text]{
+  border:1px solid var(--border); border-radius:8px; padding:9px 10px; font-size:14px;
+  width:100%; font-family:inherit; color:var(--text); background:#fff;
+}
+input[type=text]:focus{ outline:none; border-color:var(--accent-2); box-shadow:0 0 0 3px color-mix(in srgb, var(--accent-2) 18%, transparent); }
+
+.link-row{
+  display:grid; grid-template-columns: 1.2fr 1.8fr 0.8fr auto; gap:8px; align-items:center; margin-bottom:8px;
+}
+.link-row input[placeholder="pill (optional)"]{ font-size:13px; }
+
+.iconbtn{
+  border:1px solid var(--border); background:#fff; color:var(--text);
+  border-radius:8px; padding:7px 9px; cursor:pointer; font-size:13px; line-height:1;
+}
+.iconbtn:hover{ border-color: color-mix(in srgb, var(--accent-2) 40%, var(--border)); }
+.iconbtn.danger{ color:var(--err); }
+.iconbtn.danger:hover{ border-color:var(--err-bd); background:var(--err-bg); }
+.link-controls{ display:flex; gap:4px; }
+
+.addbtn{
+  display:block; width:100%; border:1.5px dashed var(--border); background:transparent; color:var(--muted);
+  border-radius:10px; padding:9px 12px; cursor:pointer; font-size:14px; margin-top:6px;
+}
+.addbtn:hover{ border-color: color-mix(in srgb, var(--accent-2) 60%, var(--border)); color:var(--text); }
+
+.addcatbtn{
+  display:block; width:100%; border:1.5px dashed var(--accent-2); background:transparent; color:var(--accent);
+  border-radius:12px; padding:14px; cursor:pointer; font-size:15px; font-weight:600; margin-bottom:26px;
+}
+.addcatbtn:hover{ background: color-mix(in srgb, var(--accent-2) 8%, transparent); }
+
+.actionbar{
+  position:sticky; bottom:14px; display:flex; gap:10px; flex-wrap:wrap;
+  background:#fff; border:1px solid var(--border); border-radius:14px; box-shadow:var(--shadow);
+  padding:14px; margin:26px 0;
+}
+.btn-primary{
+  background:var(--accent); color:#fff; border:none; border-radius:999px; padding:12px 22px;
+  cursor:pointer; font-weight:700; font-size:14px;
+}
+.btn-primary:hover{ background: color-mix(in srgb, var(--accent) 85%, #000); }
+.btn-secondary{
+  background:#fff; color:var(--text); border:1px solid var(--border); border-radius:999px; padding:12px 20px;
+  cursor:pointer; font-weight:600; font-size:14px;
+}
+.btn-secondary:hover{ border-color: color-mix(in srgb, var(--accent-2) 40%, var(--border)); }
+.action-note{ align-self:center; color:var(--muted); font-size:13px; }
+
+h3.section-title{ font-size:14px; text-transform:uppercase; letter-spacing:.08em; color:var(--muted); margin:32px 0 14px; }
+
+/* Preview cards — mirrors index.html's card styling for visual fidelity */
+.grid{ display:grid; gap:16px; grid-template-columns: repeat(auto-fit, minmax(225px, 1fr)); }
+.card{
+  background:var(--card); border:1px solid var(--border); border-radius:var(--radius); box-shadow:var(--shadow);
+  padding:18px; display:flex; flex-direction:column; gap:12px;
+}
+.ctitle{ display:flex; align-items:center; gap:12px; }
+.ctitle .icon{ font-size:30px; line-height:1; width:38px; height:38px; flex-shrink:0; display:flex; align-items:center; justify-content:center; }
+.ctitle h2{ font-size:18px; margin:0; line-height:1.3; min-height:calc(1.3em * 2); display:flex; align-items:center; }
+.ctitle h2 .clamp{ display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
+.links{ display:flex; flex-direction:column; gap:10px; margin-top:4px; }
+.links a{
+  display:flex; align-items:center; justify-content:space-between; gap:12px;
+  text-decoration:none; color:var(--text); background: color-mix(in srgb, var(--accent) 5%, var(--card));
+  border:1px solid var(--border); padding:10px 12px; border-radius:12px;
+}
+.pill{ font-size:12px; padding:3px 8px; border-radius:999px; border:1px solid var(--border); color:var(--muted) }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="brand">
+      <div class="logo" aria-hidden="true"><img src="Logo.png" alt="Crossroads FLEX" height="48" decoding="async"></div>
+      <div>
+        <div class="tag">Crossroads FLEX</div>
+        <h1>Edit Links</h1>
+      </div>
+    </div>
+    <a class="backlink" href="index.html">← Back to Dashboard</a>
+  </header>
+  <div class="bar" aria-hidden="true"></div>
+
+  <div id="statusbar" class="statusbar">
+    <span class="status-msg" id="statusMsg">Loading current links.md…</span>
+    <label class="filebtn">
+      Import a different file…
+      <input type="file" id="fileInput" accept=".md,text/markdown,text/plain" />
+    </label>
+    <button class="filebtn" id="reloadBtn" type="button">Reload live links.md</button>
+  </div>
+
+  <h3 class="section-title">Sections</h3>
+  <div id="editor"></div>
+  <button class="addcatbtn" id="addCatBtn" type="button">+ Add a new section</button>
+
+  <div class="actionbar">
+    <button class="btn-primary" id="downloadBtn" type="button">⬇️ Download links.md</button>
+    <button class="btn-secondary" id="copyBtn" type="button">📋 Copy Markdown</button>
+    <span class="action-note" id="actionNote">Hand the downloaded file off to whoever updates the site.</span>
+  </div>
+
+  <h3 class="section-title">Live Preview — this is what the dashboard will look like</h3>
+  <div class="grid" id="preview"></div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const DEFAULT_DOC_TITLE = 'Crossroads FLEX High School – Family Dashboard';
+  let docTitle = DEFAULT_DOC_TITLE;
+  let state = []; // [{icon, title, links:[{label,url,pill}]}]
+
+  const editorEl = document.getElementById('editor');
+  const previewEl = document.getElementById('preview');
+  const statusbar = document.getElementById('statusbar');
+  const statusMsg = document.getElementById('statusMsg');
+
+  function setStatus(msg, kind){
+    statusMsg.textContent = msg;
+    statusbar.classList.remove('ok','err');
+    if (kind) statusbar.classList.add(kind);
+  }
+
+  // ---------- Parsing ----------
+  function parseMarkdown(md){
+    const tokens = marked.lexer(md);
+    let title = DEFAULT_DOC_TITLE;
+    const cats = [];
+    let current = null;
+
+    tokens.forEach(tok => {
+      if (tok.type === 'heading' && tok.depth === 1) {
+        title = tok.text;
+      } else if (tok.type === 'heading' && tok.depth === 2) {
+        if (current) cats.push(current);
+        let icon = '📁', text = tok.text;
+        const m = tok.text.match(/^(\p{Emoji_Presentation}|\p{Extended_Pictographic})\s*(.*)$/u);
+        if (m) { icon = m[1]; text = m[2]; }
+        current = { icon, title: text, links: [] };
+      } else if (tok.type === 'list') {
+        tok.items?.forEach(item => {
+          if (!current) return;
+          // [Label](URL) *(pill)*  — also accept _(pill)_ for older files
+          const lm = item.text.match(/\[([^\]]+)\]\(([^)]+)\)(?:\s*[_*]\(([^)]+)\)[_*])?/);
+          if (lm) current.links.push({ label: lm[1], url: lm[2], pill: lm[3] || '' });
+        });
+      }
+    });
+    if (current) cats.push(current);
+    return { title, cats };
+  }
+
+  // ---------- Serializing ----------
+  function safe(s){
+    // Keep exported markdown valid: strip characters that would break [label](url) syntax
+    return (s || '').replace(/[\[\]]/g, '').trim();
+  }
+  function serializeMarkdown(){
+    const lines = [`# ${docTitle}`, ''];
+    state.forEach(cat => {
+      lines.push(`## ${cat.icon} ${safe(cat.title)}`);
+      lines.push('');
+      cat.links.forEach(l => {
+        const label = safe(l.label);
+        const url = (l.url || '').trim();
+        if (!label || !url) return;
+        const pill = safe(l.pill);
+        lines.push(pill ? `- [${label}](${url}) *(${pill})*` : `- [${label}](${url})`);
+      });
+      lines.push('');
+    });
+    return lines.join('\n').replace(/\n{3,}/g, '\n\n').trim() + '\n';
+  }
+
+  // ---------- Rendering: editor ----------
+  function renderEditor(){
+    editorEl.innerHTML = '';
+    state.forEach((cat, ci) => {
+      const block = document.createElement('div');
+      block.className = 'cat-block';
+
+      const head = document.createElement('div');
+      head.className = 'cat-head';
+      head.innerHTML = `
+        <input type="text" class="icon-input" value="${escAttr(cat.icon)}" placeholder="📁" aria-label="Section icon">
+        <input type="text" class="title-input" value="${escAttr(cat.title)}" placeholder="Section title" aria-label="Section title">
+        <div class="cat-controls">
+          <button class="iconbtn" data-act="cat-up" title="Move section up">▲</button>
+          <button class="iconbtn" data-act="cat-down" title="Move section down">▼</button>
+          <button class="iconbtn danger" data-act="cat-del" title="Remove section">✕</button>
+        </div>
+      `;
+      head.querySelector('.icon-input').addEventListener('input', e => { cat.icon = e.target.value; renderPreview(); });
+      head.querySelector('.title-input').addEventListener('input', e => { cat.title = e.target.value; renderPreview(); });
+      head.querySelector('[data-act=cat-up]').addEventListener('click', () => moveCat(ci, -1));
+      head.querySelector('[data-act=cat-down]').addEventListener('click', () => moveCat(ci, 1));
+      head.querySelector('[data-act=cat-del]').addEventListener('click', () => delCat(ci));
+      block.appendChild(head);
+
+      const linksWrap = document.createElement('div');
+      cat.links.forEach((l, li) => {
+        const row = document.createElement('div');
+        row.className = 'link-row';
+        row.innerHTML = `
+          <input type="text" placeholder="Label" value="${escAttr(l.label)}">
+          <input type="text" placeholder="https://…" value="${escAttr(l.url)}">
+          <input type="text" placeholder="pill (optional)" value="${escAttr(l.pill)}">
+          <div class="link-controls">
+            <button class="iconbtn" data-act="link-up" title="Move up">▲</button>
+            <button class="iconbtn" data-act="link-down" title="Move down">▼</button>
+            <button class="iconbtn danger" data-act="link-del" title="Remove link">✕</button>
+          </div>
+        `;
+        const [labelIn, urlIn, pillIn] = row.querySelectorAll('input');
+        labelIn.addEventListener('input', e => { l.label = e.target.value; renderPreview(); });
+        urlIn.addEventListener('input', e => { l.url = e.target.value; renderPreview(); });
+        pillIn.addEventListener('input', e => { l.pill = e.target.value; renderPreview(); });
+        row.querySelector('[data-act=link-up]').addEventListener('click', () => moveLink(ci, li, -1));
+        row.querySelector('[data-act=link-down]').addEventListener('click', () => moveLink(ci, li, 1));
+        row.querySelector('[data-act=link-del]').addEventListener('click', () => delLink(ci, li));
+        linksWrap.appendChild(row);
+      });
+      block.appendChild(linksWrap);
+
+      const addLinkBtn = document.createElement('button');
+      addLinkBtn.type = 'button';
+      addLinkBtn.className = 'addbtn';
+      addLinkBtn.textContent = '+ Add a link';
+      addLinkBtn.addEventListener('click', () => {
+        cat.links.push({ label: '', url: '', pill: '' });
+        renderEditor(); renderPreview();
+      });
+      block.appendChild(addLinkBtn);
+
+      editorEl.appendChild(block);
+    });
+  }
+
+  function escAttr(s){
+    return (s ?? '').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;');
+  }
+
+  // ---------- Structural mutations ----------
+  function moveCat(i, dir){
+    const j = i + dir;
+    if (j < 0 || j >= state.length) return;
+    [state[i], state[j]] = [state[j], state[i]];
+    renderEditor(); renderPreview();
+  }
+  function delCat(i){
+    if (!confirm(`Remove the "${state[i].title || 'Untitled'}" section and all its links?`)) return;
+    state.splice(i, 1);
+    renderEditor(); renderPreview();
+  }
+  function moveLink(ci, li, dir){
+    const links = state[ci].links;
+    const j = li + dir;
+    if (j < 0 || j >= links.length) return;
+    [links[li], links[j]] = [links[j], links[li]];
+    renderEditor(); renderPreview();
+  }
+  function delLink(ci, li){
+    state[ci].links.splice(li, 1);
+    renderEditor(); renderPreview();
+  }
+
+  document.getElementById('addCatBtn').addEventListener('click', () => {
+    state.push({ icon: '📁', title: '', links: [{ label: '', url: '', pill: '' }] });
+    renderEditor(); renderPreview();
+    editorEl.lastElementChild?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  });
+
+  // ---------- Rendering: preview (mirrors index.html card markup) ----------
+  function renderPreview(){
+    previewEl.innerHTML = state.map(c => `
+      <article class="card">
+        <div class="ctitle">
+          <div class="icon" aria-hidden="true">${c.icon || '📁'}</div>
+          <h2><span class="clamp">${escHtml(c.title) || '(untitled section)'}</span></h2>
+        </div>
+        <div class="links">
+          ${c.links.filter(l => l.label || l.url).map(l => `
+            <a href="#" onclick="return false;">
+              ${escHtml(l.label) || '(untitled link)'}${l.pill ? ` <span class="pill">${escHtml(l.pill)}</span>` : ``}
+            </a>
+          `).join('')}
+        </div>
+      </article>
+    `).join('');
+  }
+  function escHtml(s){
+    return (s ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  }
+
+  // ---------- Import / load ----------
+  function loadFromText(md, sourceLabel){
+    try {
+      const parsed = parseMarkdown(md);
+      docTitle = parsed.title;
+      state = parsed.cats;
+      renderEditor(); renderPreview();
+      setStatus(`✅ Loaded ${sourceLabel} — ${state.length} sections, ${state.reduce((n,c)=>n+c.links.length,0)} links.`, 'ok');
+    } catch (err) {
+      console.error(err);
+      setStatus(`⚠️ Couldn't parse ${sourceLabel}. Check the file and try again.`, 'err');
+    }
+  }
+
+  async function loadLive(){
+    setStatus('Loading current links.md…');
+    try {
+      const res = await fetch('links.md', { cache: 'no-store' });
+      if (!res.ok) throw new Error('not found');
+      const md = await res.text();
+      loadFromText(md, 'the live links.md');
+    } catch (err) {
+      setStatus('⚠️ Could not auto-load links.md (this page may be opened outside the website, or the file isn\'t here yet). Use "Import a different file…" to open one manually.', 'err');
+      state = [];
+      renderEditor(); renderPreview();
+    }
+  }
+
+  document.getElementById('reloadBtn').addEventListener('click', loadLive);
+  document.getElementById('fileInput').addEventListener('change', e => {
+    const file = e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = () => loadFromText(reader.result, `"${file.name}"`);
+    reader.onerror = () => setStatus('⚠️ Could not read that file.', 'err');
+    reader.readAsText(file);
+  });
+
+  // ---------- Export ----------
+  document.getElementById('downloadBtn').addEventListener('click', () => {
+    const md = serializeMarkdown();
+    const blob = new Blob([md], { type: 'text/markdown' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url; a.download = 'links.md';
+    document.body.appendChild(a); a.click(); a.remove();
+    URL.revokeObjectURL(url);
+  });
+  document.getElementById('copyBtn').addEventListener('click', async () => {
+    const md = serializeMarkdown();
+    const note = document.getElementById('actionNote');
+    try {
+      await navigator.clipboard.writeText(md);
+      const prev = note.textContent;
+      note.textContent = 'Copied to clipboard!';
+      setTimeout(() => { note.textContent = prev; }, 2000);
+    } catch {
+      alert('Could not copy automatically — please use Download instead.');
+    }
+  });
+
+  loadLive();
+});
+</script>
+</body>
+</html>

@@ -81,8 +81,7 @@
       </div>
       <div class="tools">
         <input id="q" type="search" placeholder="Filter links…" aria-label="Filter links" />
-        <a id="editLinksBtn" class="toggle" href="#" target="_blank" rel="noopener">✏️ Edit links</a>
-        <!-- <button class="toggle" id="themeBtn" type="button" aria-label="Toggle theme">🌓 Theme</button> -->
+        <a id="editLinksBtn" class="toggle" href="admin" target="_blank" rel="noopener noreferrer">✏️ Edit links</a>
       </div>
     </header>
     <div class="bar" aria-hidden="true"></div>
@@ -104,6 +103,7 @@
   <script>
   document.addEventListener('DOMContentLoaded', () => {
     // Edit Links 
+    /*
   const editBtn = document.getElementById('editLinksBtn');
   if (editBtn) {
     // Try to infer owner/repo from GitHub Pages URL structure
@@ -119,7 +119,7 @@
       editBtn.href = fallback;
     }
   }
-
+  */
     // Filter links by search term
     const q = document.getElementById('q');
     if (q) {
